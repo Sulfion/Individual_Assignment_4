@@ -6,7 +6,6 @@ using UnityEngine.Android;
 
 public class GhostController : MonoBehaviour
 {
-
     public float wanderRadius;
     public float wanderTimer;
     private bool paused = false;
