@@ -69,6 +69,7 @@ public class GhostController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GetComponent<Collider>().enabled = false;                        //turn off the collider to stop multiple ghosts from dying
             gameObject.GetComponent<MeshRenderer>().enabled = false;               //hide the ghost on collision
             GetComponent<AudioSource>().Play();                                   //play ghost scream
             Instantiate(ghostDeath, transform.position, Quaternion.identity);    //play death particle effect at ghost position
