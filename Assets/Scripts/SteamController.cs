@@ -23,7 +23,7 @@ public class SteamController : MonoBehaviour
     }
 
     //create raycast, check if gameobject is player using tag, if it is a player, play steam particle effect
-    //check how long player was in raycast, if 3seconds or longer play smoke particle
+    //check how long player was in raycast, if 3seconds or longer play steam particle and steam sound
     public void DistanceFromSteamCheckAndRaycast()
     {
         var ray = new Ray(this.transform.position, this.transform.right);
