@@ -7,10 +7,13 @@ public class SteamController : MonoBehaviour
     public Vector3 collision = Vector3.zero;
     private float timer = 0;
 
+    public AudioClip steamBlastNoise;
+
     // Start is called before the first frame update
     void Start()
     {
         ParticleSystem part = GetComponent<ParticleSystem>(); //get the particle system on the gameobject
+        GetComponent<AudioSource>().clip = steamBlastNoise;
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class SteamController : MonoBehaviour
                 if (timer >= 3)
                 {
                     var part = GetComponent<ParticleSystem>();
+                    GetComponent<AudioSource>().Play();
                     part.Play();
                     Debug.Log("Hit");
                     timer = 0;
