@@ -131,8 +131,7 @@ MonoBehaviour:
   wanderTimer: 1
   ghostScream: {fileID: 8300000, guid: fa488769c7f175b4d9f92fbd272e8c26, type: 3}
   ghostDeath: {fileID: 5642766282230003982, guid: b5c8ca7ed10b61e499cce8ec3b6e2e4c, type: 3}
-  ghostBody: {fileID: 5508867488564154358}
-  ghostRenderer: {fileID: 0}
+  fakeGhostBody: {fileID: 7123850208166132132, guid: 8f1f553853c8550488b00de6065d675c, type: 3}
 --- !u!195 &5508867488564154351
 NavMeshAgent:
   m_ObjectHideFlags: 0
