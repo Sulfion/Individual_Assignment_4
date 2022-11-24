@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Android;
+using UnityEngine.VFX;
 
 public class GhostController : MonoBehaviour
 {
     public float wanderRadius;
     public float wanderTimer;
-    private bool paused = false;
 
     private Transform target;
     private NavMeshAgent agent;
     private float timer;
 
     public AudioClip ghostScream;
+    public GameObject ghostDeath;
 
     // Use this for initialization
     void OnEnable()
@@ -24,6 +25,7 @@ public class GhostController : MonoBehaviour
 
         GetComponent<AudioSource>().playOnAwake = false;
         GetComponent<AudioSource>().clip = ghostScream;
+
     }
 
     // Update is called once per frame
@@ -66,6 +68,8 @@ public class GhostController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GetComponent<AudioSource>().Play();
+            Instantiate(ghostDeath, transform.position, Quaternion.identity);    
+            Destroy(gameObject, 2.4f);
         }
     }
 }
