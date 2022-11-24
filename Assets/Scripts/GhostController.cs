@@ -16,6 +16,8 @@ public class GhostController : MonoBehaviour
 
     public AudioClip ghostScream;
     public GameObject ghostDeath;
+    public GameObject fakeGhostBody;
+
 
     // Use this for initialization
     void OnEnable()
@@ -25,7 +27,6 @@ public class GhostController : MonoBehaviour
 
         GetComponent<AudioSource>().playOnAwake = false;
         GetComponent<AudioSource>().clip = ghostScream;
-
     }
 
     // Update is called once per frame
@@ -63,13 +64,17 @@ public class GhostController : MonoBehaviour
     }
 
     //play scream when ghost collides with player
+    //some of this is really dumb, can't get ghost to stop moving so I hide renderer, spawn fake stationary ghost, wait until VFX are done, then destroy both
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GetComponent<AudioSource>().Play();
-            Instantiate(ghostDeath, transform.position, Quaternion.identity);    
-            Destroy(gameObject, 2.4f);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;               //hide the ghost on collision
+            GetComponent<AudioSource>().Play();                                   //play ghost scream
+            Instantiate(ghostDeath, transform.position, Quaternion.identity);    //play death particle effect at ghost position
+            GameObject fakeGhost = Instantiate(fakeGhostBody, transform.position, Quaternion.identity);//spawn fake ghost body
+            Destroy(gameObject, 2.4f);               //wait, then destroy ghost
+            Destroy(fakeGhost, 2.4f);               //wait, then destroy fake ghost
         }
     }
 }
