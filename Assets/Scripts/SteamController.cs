@@ -15,12 +15,16 @@ public class SteamController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var ray = new Ray(this.transform.position, this.transform.forward);
+        var ray = new Ray(this.transform.position, this.transform.right);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, maxDistance:3.5f))
         {
-            var part = GetComponent<ParticleSystem>();
-            part.Play();
+            if (hit.collider.CompareTag("Player"))
+            {
+                var part = GetComponent<ParticleSystem>();
+                part.Play();
+                Debug.Log("Hit");
+            }
         }
     }
 }
