@@ -28,12 +28,12 @@ public class SteamController : MonoBehaviour
     {
         var ray = new Ray(this.transform.position, this.transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxDistance: 5))
+        if (Physics.Raycast(ray, out hit, maxDistance: 14))
         {
             if (hit.collider.CompareTag("Player"))
             {
                 timer += Time.deltaTime;
-                if (timer >= 2)
+                if (timer >= 2.5f)
                 {
                     var part = GetComponent<ParticleSystem>();
                     GetComponent<AudioSource>().Play();
