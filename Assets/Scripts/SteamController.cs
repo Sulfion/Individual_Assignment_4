@@ -26,14 +26,14 @@ public class SteamController : MonoBehaviour
     //check how long player was in raycast, if 3seconds or longer play steam particle and steam sound
     public void DistanceFromSteamCheckAndRaycast()
     {
-        var ray = new Ray(this.transform.position, this.transform.right);
+        var ray = new Ray(this.transform.position, this.transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxDistance: 3.5f))
+        if (Physics.Raycast(ray, out hit, maxDistance: 5))
         {
             if (hit.collider.CompareTag("Player"))
             {
                 timer += Time.deltaTime;
-                if (timer >= 3)
+                if (timer >= 2)
                 {
                     var part = GetComponent<ParticleSystem>();
                     GetComponent<AudioSource>().Play();
