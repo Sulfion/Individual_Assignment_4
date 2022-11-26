@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PlayerFootsteps : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float StepDistance;
+    public List<AudioClip> sounds;
+
+    private Vector3 lastPosition;
+    private AudioSource audioSource;
+    private static System.Random rnd = new System.Random();
+
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        lastPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (Vector3.Distance(transform.position, lastPosition) > StepDistance)
+        {
+            audioSource.PlayOneShot(sounds[rnd.Next(sounds.Count)]);
+            lastPosition = transform.position;
+        }
     }
 }
+

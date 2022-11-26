@@ -17,11 +17,12 @@ public class LightController : MonoBehaviour
         }
     }
 
+    //make light randomly flicker by getting light component, and assigning random times to enable and disable it
     IEnumerator FlickeringLight()
     {
         isFlickering = true;
         this.gameObject.GetComponent<Light>().enabled = false;
-        timeDelay = Random.Range(0.01f, 0.2f);
+        timeDelay = Random.Range(0.01f, 0.3f);
         yield return new WaitForSeconds(timeDelay);
         this.gameObject.GetComponent<Light>().enabled = true;
         timeDelay = Random.Range(0.01f, 2.0f);

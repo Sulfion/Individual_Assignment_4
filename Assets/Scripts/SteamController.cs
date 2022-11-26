@@ -28,7 +28,7 @@ public class SteamController : MonoBehaviour
     {
         var ray = new Ray(this.transform.position, this.transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxDistance: 10))
+        if (Physics.Raycast(ray, out hit, maxDistance: 8))
         {
             if (hit.collider.CompareTag("Player"))
             {
